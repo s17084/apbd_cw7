@@ -1,0 +1,26 @@
+Method: GET; Path: /api/students; QueryString: ; Body: ;
+Method: POST; Path: /api/enrollments/promotions; QueryString: ; Body: {
+	"studies": "Budownictwo",
+	"semester": 2
+};
+Method: POST; Path: /api/enrollments; QueryString: ; Body: {
+	"email": "s007@pjatk.edu.eu",
+	"studies": "Budownictwo",
+	"lastName": "Kowalski",
+	"firstName": "Andrzej",
+	"indexNumber": "s009",
+	"birthDate": "1990-11-02"
+};
+Method: POST; Path: /api/enrollments; QueryString: ; Body: {
+	"email": "s007@pjatk.edu.eu",
+	"studies": "Budownictwo",
+	"lastName": "Kowalski",
+	"firstName": "Andrzej",
+	"indexNumber": "s009",
+	"birthDate": "1990-11-02"
+};
+Method: GET; Path: /api/students; QueryString: ; Body: ;
+Method: POST; Path: /api/enrollments/promotions; QueryString: ; Body: {
+	"studies": "Budownictwo",
+	"semester": 2
+};
