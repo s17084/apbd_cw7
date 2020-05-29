@@ -3,17 +3,20 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using Cwiczenia3.DAL;
 using Cwiczenia3.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Cwiczenia3.Controllers
 {
     [ApiController]
     [Route("api/students")]
+    [Authorize(Roles ="student, employee")]
     public class StudentsController : ControllerBase
     {
         private readonly IDbService _dbService;
-        private static readonly string sqlConnectionLocal = "Data Source=DESKTOP-7GSCK0U\\SQLEXPRESS;Initial Catalog=s17084;Integrated Security=True";
+        private static readonly string sqlConnectionLocal = "Data Source=db-mssql;Initial Catalog=s17084;Integrated Security=True";
         //"Data Source=db-mssql;Initial Catalog=s17084;Integrated Security=True";
+        //"Data Source=DESKTOP-7GSCK0U\\SQLEXPRESS;Initial Catalog=s17084;Integrated Security=True"
         private static readonly string sqlConnectionString = sqlConnectionLocal;
 
         public StudentsController(IDbService dbService)

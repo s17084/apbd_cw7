@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Cwiczenia5.DTOs.Requests;
 using Cwiczenia5.DTOs.Responses;
 using Cwiczenia5.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,6 +13,7 @@ namespace Cwiczenia5.Controllers
 {
     [Route("api/enrollments")]
     [ApiController]
+    [Authorize(Roles="employee")]
     public class EnrollmentsController : ControllerBase
     {
         private IStudentDbService _service;

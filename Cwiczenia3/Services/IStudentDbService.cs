@@ -12,5 +12,11 @@ namespace Cwiczenia5.Services
         EnrollStudentResponse EnrollStudent(EnrollStudentRequest request);
         PromoteStudentsResponse PromoteStudents(PromoteStudentsRequest request);
         bool CheckIndex(string indexNumber);
+        string GetPassword(string indexNumber);
+        string GetSalt(string indexNumber);
+        void CreatePassword(string password, string salt, string indexNumber);
+        ICollection<String> GetUserRoles(string indexNumber);
+        void UpdateRefreshToken(string indexNumber, Guid refreshToken);
+        string GetRefreshToken(string indexNumber);
     }
 }

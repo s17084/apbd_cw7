@@ -1,0 +1,22 @@
+CREATE TABLE Roles (
+	IdRole INT CONSTRAINT IdRolePK PRIMARY KEY,
+	RoleName NVARCHAR(225)
+);
+GO;
+
+CREATE TABLE StudentRole (
+	IdRole INT CONSTRAINT StudentRoleIdRole FOREIGN KEY REFERENCES Roles (IdRole),
+	IndexNumber NVARCHAR(100) CONSTRAINT StudentRoleIndexNumber FOREIGN KEY REFERENCES Student (IndexNumber)
+);
+GO
+
+INSERT INTO Roles VALUES(301, 'student');
+INSERT INTO Roles VALUES(302, 'employee');
+GO
+
+INSERT INTO StudentRole VALUES (302, 's001');
+INSERT INTO StudentRole VALUES (301, 's001');
+GO
+
+ALTER TABLE Student ADD Password NVARCHAR(255);
+ALTER TABLE Student ADD Salt NVARCHAR(255);
