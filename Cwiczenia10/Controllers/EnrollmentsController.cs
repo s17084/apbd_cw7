@@ -13,7 +13,7 @@ namespace Cwiczenia5.Controllers
 {
     [Route("api/enrollments")]
     [ApiController]
-    [Authorize(Roles="employee")]
+    //[Authorize(Roles="employee")]
     public class EnrollmentsController : ControllerBase
     {
         private IStudentDbService _service;

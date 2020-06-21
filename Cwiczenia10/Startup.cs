@@ -1,3 +1,4 @@
+using Cwiczenia10.Models.CreatedByScaffold;
 using Cwiczenia3.DAL;
 using Cwiczenia5.Services;
 using Cwiczenia6.Middleware;
@@ -9,7 +10,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
-using Microsoft.OpenApi.Models;
 using System.Text;
 
 namespace Cwiczenia3
@@ -41,6 +41,7 @@ namespace Cwiczenia3
                 });
             services.AddSingleton<IDbService, MockDbService>();
             services.AddTransient<IStudentDbService, SqlServerStudentDbService>();
+            services.AddDbContext<s17084Context>();
             services.AddControllers();
         }
 

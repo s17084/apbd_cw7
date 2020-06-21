@@ -1,4 +1,6 @@
-﻿using Cwiczenia5.DTOs.Requests;
+﻿using Cwiczenia10.DTOs.Requests;
+using Cwiczenia10.Models.CreatedByScaffold;
+using Cwiczenia5.DTOs.Requests;
 using Cwiczenia5.DTOs.Responses;
 using System;
 using System.Collections.Generic;
@@ -9,6 +11,9 @@ namespace Cwiczenia5.Services
 {
     public interface IStudentDbService
     {
+        string DeleteStudent(string indexNumber);
+        string UpdateStudent(UpdateStudentRequest req, string indexNumber);
+        IEnumerable<Student> GetStudents();
         EnrollStudentResponse EnrollStudent(EnrollStudentRequest request);
         PromoteStudentsResponse PromoteStudents(PromoteStudentsRequest request);
         bool CheckIndex(string indexNumber);

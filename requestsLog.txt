@@ -284,3 +284,190 @@ Method: POST; Path: /api/enrollments; QueryString: ; Body: {
 	"indexNumber": "s009",
 	"birthDate": "1990-11-02"
 };
+Method: GET; Path: /api/students; QueryString: ; Body: ;
+Method: GET; Path: /favicon.ico; QueryString: ; Body: ;
+Method: GET; Path: /api/students; QueryString: ; Body: ;
+Method: GET; Path: /favicon.ico; QueryString: ; Body: ;
+Method: GET; Path: /api/students/all; QueryString: ; Body: ;
+Method: POST; Path: /api/auth/login; QueryString: ; Body: {
+	"login": "s001",
+	"password": "password"
+};
+Method: GET; Path: /api/students; QueryString: ; Body: ;
+Method: GET; Path: /favicon.ico; QueryString: ; Body: ;
+Method: POST; Path: /api/auth/login; QueryString: ; Body: {
+	"login": "s001",
+	"password": "password"
+};
+Method: GET; Path: /api/students/all; QueryString: ; Body: ;
+Method: GET; Path: /api/students/all; QueryString: ; Body: ;
+Method: GET; Path: /api/students; QueryString: ; Body: ;
+Method: GET; Path: /favicon.ico; QueryString: ; Body: ;
+Method: GET; Path: /api/students/all; QueryString: ; Body: ;
+Method: GET; Path: /api/students; QueryString: ; Body: ;
+Method: GET; Path: /favicon.ico; QueryString: ; Body: ;
+Method: GET; Path: /api/students/all; QueryString: ; Body: ;
+Method: GET; Path: /api/students; QueryString: ; Body: ;
+Method: GET; Path: /favicon.ico; QueryString: ; Body: ;
+Method: GET; Path: /api/students; QueryString: ; Body: ;
+Method: GET; Path: /favicon.ico; QueryString: ; Body: ;
+Method: PATCH; Path: /api/students/update/s006; QueryString: ; Body: {
+	"firstName": "Ania"
+};
+Method: PATCH; Path: /api/students/update/s006; QueryString: ; Body: {
+	"firstName": "Ania"
+};
+Method: GET; Path: /api/students; QueryString: ; Body: ;
+Method: GET; Path: /favicon.ico; QueryString: ; Body: ;
+Method: GET; Path: /api/students; QueryString: ; Body: ;
+Method: GET; Path: /favicon.ico; QueryString: ; Body: ;
+Method: PATCH; Path: /api/students/update/s006; QueryString: ; Body: {
+	"firstName": "Ania"
+};
+Method: GET; Path: /api/students/all; QueryString: ; Body: ;
+Method: PATCH; Path: /api/students/update/s006; QueryString: ; Body: {
+	"firstName": "Ania",
+	"lastName": "Mania",
+	"birthDate": "2000-01-01"
+};
+Method: GET; Path: /api/students/all; QueryString: ; Body: ;
+Method: GET; Path: /api/students; QueryString: ; Body: ;
+Method: GET; Path: /favicon.ico; QueryString: ; Body: ;
+Method: DELETE; Path: /api/students/delete/s006; QueryString: ; Body: ;
+Method: GET; Path: /api/students/all; QueryString: ; Body: ;
+Method: GET; Path: /api/students; QueryString: ; Body: ;
+Method: GET; Path: /favicon.ico; QueryString: ; Body: ;
+Method: POST; Path: /api/enrollments; QueryString: ; Body: {
+	"email": "s010@pjatk.edu.eu",
+	"studies": "Budownictwo",
+	"lastName": "Nowak",
+	"firstName": "Andrzej",
+	"indexNumber": "s010",
+	"birthDate": "1990-11-02"
+};
+Method: GET; Path: /api/students; QueryString: ; Body: ;
+Method: GET; Path: /favicon.ico; QueryString: ; Body: ;
+Method: POST; Path: /api/enrollments; QueryString: ; Body: {
+	"email": "s010@pjatk.edu.eu",
+	"studies": "Budownictw",
+	"lastName": "Nowak",
+	"firstName": "Andrzej",
+	"indexNumber": "s010",
+	"birthDate": "1990-11-02"
+};
+Method: GET; Path: /api/students; QueryString: ; Body: ;
+Method: GET; Path: /favicon.ico; QueryString: ; Body: ;
+Method: POST; Path: /api/enrollments; QueryString: ; Body: {
+	"email": "s010@pjatk.edu.eu",
+	"studies": "Budownictw",
+	"lastName": "Nowak",
+	"firstName": "Andrzej",
+	"indexNumber": "s010",
+	"birthDate": "1990-11-02"
+};
+Method: GET; Path: /api/students; QueryString: ; Body: ;
+Method: GET; Path: /favicon.ico; QueryString: ; Body: ;
+Method: POST; Path: /api/enrollments; QueryString: ; Body: {
+	"email": "s010@pjatk.edu.eu",
+	"studies": "Budownictw",
+	"lastName": "Nowak",
+	"firstName": "Andrzej",
+	"indexNumber": "s010",
+	"birthDate": "1990-11-02"
+};
+Method: POST; Path: /api/enrollments; QueryString: ; Body: {
+	"email": "s010@pjatk.edu.eu",
+	"studies": "Budownictwo",
+	"lastName": "Nowak",
+	"firstName": "Andrzej",
+	"indexNumber": "s001",
+	"birthDate": "1990-11-02"
+};
+Method: POST; Path: /api/enrollments; QueryString: ; Body: {
+	"email": "s010@pjatk.edu.eu",
+	"studies": "Budownictwo",
+	"lastName": "Nowak",
+	"firstName": "Andrzej",
+	"indexNumber": "s010",
+	"birthDate": "1990-11-02"
+};
+Method: GET; Path: /api/students; QueryString: ; Body: ;
+Method: GET; Path: /favicon.ico; QueryString: ; Body: ;
+Method: POST; Path: /api/enrollments/promotions; QueryString: ; Body: {
+	"studies": "Informatyka",
+	"semester": 4
+};
+Method: POST; Path: /api/enrollments/promotions; QueryString: ; Body: {
+	"studies": "Informatyk",
+	"semester": 1
+};
+Method: POST; Path: /api/enrollments/promotions; QueryString: ; Body: {
+	"studies": "Informatyka",
+	"semester": 1
+};
+Method: GET; Path: /api/students; QueryString: ; Body: ;
+Method: GET; Path: /favicon.ico; QueryString: ; Body: ;
+Method: POST; Path: /api/enrollments/promotions; QueryString: ; Body: {
+	"studies": "Informatyka",
+	"semester": 1
+};
+Method: GET; Path: /api/students; QueryString: ; Body: ;
+Method: GET; Path: /favicon.ico; QueryString: ; Body: ;
+Method: POST; Path: /api/enrollments/promotions; QueryString: ; Body: {
+	"studies": "Informatyka",
+	"semester": 1
+};
+Method: GET; Path: /api/students; QueryString: ; Body: ;
+Method: GET; Path: /favicon.ico; QueryString: ; Body: ;
+Method: POST; Path: /api/enrollments; QueryString: ; Body: {
+	"email": "s010@pjatk.edu.eu",
+	"studies": "Budownictwo",
+	"lastName": "Nowak",
+	"firstName": "Andrzej",
+	"indexNumber": "s010",
+	"birthDate": "1990-11-02"
+};
+Method: GET; Path: /api/students; QueryString: ; Body: ;
+Method: GET; Path: /favicon.ico; QueryString: ; Body: ;
+Method: POST; Path: /api/enrollments/promotions; QueryString: ; Body: {
+	"studies": "Informatyka",
+	"semester": 1
+};
+Method: POST; Path: /api/enrollments/promotions; QueryString: ; Body: {
+	"studies": "Informatyka",
+	"semester": 1
+};
+Method: GET; Path: /api/students; QueryString: ; Body: ;
+Method: GET; Path: /favicon.ico; QueryString: ; Body: ;
+Method: POST; Path: /api/enrollments/promotions; QueryString: ; Body: {
+	"studies": "Informatyka",
+	"semester": 1
+};
+Method: POST; Path: /api/enrollments/promotions; QueryString: ; Body: {
+	"studies": "Budownictwo",
+	"semester": 1
+};
+Method: POST; Path: /api/enrollments/promotions; QueryString: ; Body: {
+	"studies": "Budownictwo",
+	"semester": 1
+};
+Method: GET; Path: /api/students; QueryString: ; Body: ;
+Method: GET; Path: /favicon.ico; QueryString: ; Body: ;
+Method: POST; Path: /api/enrollments/promotions; QueryString: ; Body: {
+	"studies": "Elektronika",
+	"semester": 3
+};
+Method: POST; Path: /api/enrollments/promotions; QueryString: ; Body: {
+	"studies": "Informatyka",
+	"semester": 2
+};
+Method: POST; Path: /api/enrollments/promotions; QueryString: ; Body: {
+	"studies": "Informatyka",
+	"semester": 3
+};
+Method: GET; Path: /api/students; QueryString: ; Body: ;
+Method: GET; Path: /favicon.ico; QueryString: ; Body: ;
+Method: POST; Path: /api/enrollments/promotions; QueryString: ; Body: {
+	"studies": "Informatyka",
+	"semester": 3
+};

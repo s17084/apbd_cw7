@@ -1,10 +1,13 @@
-﻿using Cwiczenia5.DTOs.Requests;
+﻿using Cwiczenia10.DTOs.Requests;
+using Cwiczenia10.Models.CreatedByScaffold;
+using Cwiczenia5.DTOs.Requests;
 using Cwiczenia5.DTOs.Responses;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
 
 namespace Cwiczenia5.Services
 {
@@ -12,8 +15,158 @@ namespace Cwiczenia5.Services
     {
         private static readonly string sqlConnectionString = "Data Source=db-mssql;Initial Catalog=s17084;Integrated Security=True";
 
-        public SqlServerStudentDbService() { }
+        private readonly s17084Context _context;
 
+        public SqlServerStudentDbService(s17084Context context)
+        {
+            _context = context;
+        }
+
+        public string DeleteStudent(string indexNumber)
+        {
+            var student = _context.Student.Find(indexNumber);
+            if (student == null)
+            {
+                return "NO_SUCH_STUDENT";
+            }
+
+            var studentRoles = _context.StudentRole.Where(e => e.IndexNumber == indexNumber);
+            foreach (var studentRole in studentRoles)
+            {
+                _context.Remove(studentRole);
+            }
+            var enrollment = _context.Enrollment.Where(e => e.IdEnrollment == student.IdEnrollment).Single();
+            enrollment.Student.Remove(student);
+
+            _context.Remove(student);
+            _context.SaveChanges();
+            return "OK";
+        }
+
+        public string UpdateStudent(UpdateStudentRequest req, string indexNumber)
+        {
+            var student = _context.Student.Find(indexNumber);
+            if (student == null)
+            {
+                return "NO_SUCH_STUDENT";
+            }
+
+            _context.Entry(student).CurrentValues.SetValues(req);
+            _context.SaveChanges();
+            return "OK";
+        }
+
+        public IEnumerable<Student> GetStudents()
+        {
+            return _context.Student.ToList();
+        }
+
+        public EnrollStudentResponse EnrollStudent(EnrollStudentRequest request)
+        {
+            var response = new EnrollStudentResponse();
+            var semester = 1;
+
+            if(!_context.Studies.Where(e => e.Name == request.Studies).Any())
+            {
+                response.Message = "The is no such studies in database";
+                return response;
+            }
+
+            var studies = _context.Studies.Where(e => e.Name == request.Studies).Single();
+            var idStudies = studies.IdStudy;
+
+            var enrollment = _context
+                .Enrollment
+                .Where(e => e.IdStudy == idStudies && e.Semester == semester)
+                .Include(e => e.Student)
+                .Single();
+            if(enrollment == null)
+            {
+                enrollment = new Enrollment { Semester = semester, StartDate = new DateTime(), IdStudyNavigation = studies };
+            }
+
+            if(_context.Student.Where(e => e.IndexNumber == request.IndexNumber).Any())
+            {
+                response.Message = "Duplicate index number";
+                return response;
+            }
+
+            var student = new Student
+            {
+                FirstName = request.FirstName,
+                LastName = request.LastName,
+                IndexNumber = request.IndexNumber,
+                BirthDate = (DateTime)request.Birthdate,
+                IdEnrollmentNavigation = enrollment,
+            };
+
+            enrollment.Student.Add(student);
+
+            _context.SaveChanges();
+
+            response.IndexNumber = request.IndexNumber;
+            response.Semester = semester;
+            response.Message = "Student enrolled";
+            return response;
+        }
+
+        public PromoteStudentsResponse PromoteStudents(PromoteStudentsRequest request)
+        {
+            var response = new PromoteStudentsResponse();
+
+            if (!_context
+                .Enrollment
+                .Where(e => e.IdStudyNavigation.Name == request.Studies && e.Semester == request.Semester)
+                .Any())
+            {
+                response.Message = "NO_SUCH_ENROLLMENT";
+                return response;
+            }
+
+            var oldEnrollment = _context
+                .Enrollment
+                .Where(e => e.IdStudyNavigation.Name == request.Studies && e.Semester == request.Semester)
+                .Include(e => e.Student)
+                .Single();
+
+            Enrollment newEnrollment = null;
+            
+            if(_context
+                .Enrollment
+                .Where(e => e.IdStudyNavigation.Name == request.Studies && e.Semester == request.Semester + 1)
+                .Any())
+            {
+                newEnrollment = _context
+                    .Enrollment
+                    .Where(e => e.IdStudyNavigation.Name == request.Studies && e.Semester == request.Semester + 1)
+                    .Single();
+            }
+                
+
+            if(newEnrollment == null)
+            {
+                newEnrollment = new Enrollment
+                {
+                    Semester = request.Semester + 1,
+                    IdStudyNavigation = _context.Studies.Where(e => e.Name == request.Studies).Single(),
+                    StartDate = new DateTime(),
+                };
+            }
+
+            foreach(Student student in oldEnrollment.Student)
+            {
+                student.IdEnrollmentNavigation = newEnrollment;
+            }
+
+            _context.SaveChanges();
+
+            response.IdEnrollment = newEnrollment.IdEnrollment;
+            response.Message = "OK";
+
+            return response;
+        }
+
+        /*
         public EnrollStudentResponse EnrollStudent(EnrollStudentRequest request)
         {
             using (var connection = new SqlConnection(sqlConnectionString))
@@ -118,6 +271,7 @@ namespace Cwiczenia5.Services
                 return response;
             }
         }
+        
 
         public PromoteStudentsResponse PromoteStudents(PromoteStudentsRequest request)
         {
@@ -172,6 +326,7 @@ namespace Cwiczenia5.Services
                 return response;
             }
         }
+        */
 
         public bool CheckIndex(string indexNumber)
         {
@@ -452,5 +607,6 @@ namespace Cwiczenia5.Services
                 return refreshToken;
             }
         }
+
     } 
 }

@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using Cwiczenia10.DTOs.Requests;
 using Cwiczenia3.DAL;
 using Cwiczenia3.Models;
+using Cwiczenia5.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,18 +12,42 @@ namespace Cwiczenia3.Controllers
 {
     [ApiController]
     [Route("api/students")]
-    [Authorize(Roles ="student, employee")]
     public class StudentsController : ControllerBase
     {
-        private readonly IDbService _dbService;
+        private readonly IStudentDbService _dbService;
         private static readonly string sqlConnectionLocal = "Data Source=db-mssql;Initial Catalog=s17084;Integrated Security=True";
-        //"Data Source=db-mssql;Initial Catalog=s17084;Integrated Security=True";
-        //"Data Source=DESKTOP-7GSCK0U\\SQLEXPRESS;Initial Catalog=s17084;Integrated Security=True"
         private static readonly string sqlConnectionString = sqlConnectionLocal;
 
-        public StudentsController(IDbService dbService)
+        public StudentsController(IStudentDbService dbService)
         {
             _dbService = dbService;
+        }
+
+        [HttpDelete("delete/{indexNumber}")]
+        public IActionResult DeleteStudent(string indexNumber)
+        {
+            string deleteStatus = _dbService.DeleteStudent(indexNumber);
+            if(deleteStatus == "NO_SUCH_STUDENT")
+            {
+                return BadRequest(deleteStatus);
+            }
+            return Ok(deleteStatus);
+        }
+
+        [HttpPatch("update/{indexNumber}")]
+        public IActionResult UpdateStudent(UpdateStudentRequest req, string indexNumber)
+        {
+            string updateStatus =_dbService.UpdateStudent(req, indexNumber);
+            if(updateStatus == "NO_SUCH_STUDENT"){
+                return BadRequest(updateStatus);
+            }
+            return Ok(updateStatus);
+        }
+
+        [HttpGet("all")]
+        public IActionResult GetStudents()
+        {
+            return Ok(_dbService.GetStudents());
         }
 
         [HttpGet]
